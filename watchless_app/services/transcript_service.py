@@ -11,6 +11,15 @@ from watchless_app.config import MAX_TRANSCRIPT_WORDS, SUPPORTED_TRANSCRIPT_LANG
 from watchless_app.errors import TranscriptError
 
 
+def trim_transcript_for_model(words: list[str]) -> tuple[str, bool]:
+    if len(words) <= MAX_TRANSCRIPT_WORDS:
+        return " ".join(words), False
+
+    trimmed_text = " ".join(words[:MAX_TRANSCRIPT_WORDS])
+    trimmed_text += f"\n\n[Transcript trimmed at {MAX_TRANSCRIPT_WORDS:,} words.]"
+    return trimmed_text, True
+
+
 class TranscriptService:
     def extract_video_id(self, url: str) -> str:
         cleaned = (url or "").strip()
@@ -165,11 +174,7 @@ class TranscriptService:
             raise TranscriptError("The transcript was found, but it did not contain readable text.")
 
         words = transcript_text.split()
-        trimmed = False
-        if len(words) > MAX_TRANSCRIPT_WORDS:
-            transcript_text = " ".join(words[:MAX_TRANSCRIPT_WORDS])
-            transcript_text += "\n\n[Transcript trimmed at 12,000 words.]"
-            trimmed = True
+        transcript_text, trimmed = trim_transcript_for_model(words)
 
         metadata = self.fetch_metadata(url)
 

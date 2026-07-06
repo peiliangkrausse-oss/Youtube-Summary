@@ -6,16 +6,6 @@ The app runs locally. You paste YouTube links, LM Studio runs the model on your 
 
 The intelligence runs locally on your device. No cloud subscriptions, no fees, no usage limit. Everything runs on the cost of your electricity and device.
 
-## Active Project Folder
-
-Use this folder:
-
-```bash
-/Users/sam/Desktop/Vibe Code Projects/Youtube Summary App
-```
-
-The older Documents folder is not the active source of truth.
-
 ## What Is In This Repo
 
 ```text
@@ -134,6 +124,30 @@ Model guidance:
 ```
 
 Small machines should use smaller quantized models. If the app says no model is loaded, start LM Studio's local server and load exactly one model.
+
+## Anime Narration Voice
+
+The normal narration menu uses voices already installed on the device. The **Anime Cute Girl (AI)** option uses ElevenLabs, because browsers and macOS do not include anime-style voices by default.
+
+ElevenLabs has a free plan at the time this was added, but generated narration still uses ElevenLabs credits. Check their current pricing before relying on it heavily.
+
+To enable AI narration:
+
+1. Click **Voice** in WatchLess.
+2. Paste your ElevenLabs API key.
+3. Click **Load voices** to choose a voice model from your ElevenLabs account.
+4. Optionally upload an audio file in exactly one of these formats: MP3, WAV, M4A, AAC, FLAC, OGG, or WEBM.
+
+Only upload a voice sample you own or have permission to use. WatchLess sends that sample to ElevenLabs, saves the returned voice ID in your browser, and uses it for **Anime Cute Girl (AI)** narration.
+
+You can also skip upload and set a fixed voice ID before starting the app:
+
+```bash
+export ELEVENLABS_API_KEY="your ElevenLabs API key"
+export WATCHLESS_ANIME_VOICE_ID="the ElevenLabs voice ID you want"
+```
+
+If the API key or voice ID is missing, the app still works, but selecting **Anime Cute Girl (AI)** will show a setup message.
 
 ## App Versus DMG
 

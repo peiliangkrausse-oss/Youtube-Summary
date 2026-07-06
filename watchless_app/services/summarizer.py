@@ -19,6 +19,8 @@ class Summarizer:
         self.history_store = history_store
 
     def summarize(self, url: str, requested_model: str | None = None, progress=None) -> dict:
+        provider_label = self.lm_studio.provider_label()
+
         def update(percent: int, message: str, **changes) -> None:
             if progress:
                 progress(percent, message, **changes)
@@ -28,19 +30,19 @@ class Summarizer:
 
         update(16, "Reading video title...")
         metadata = self.transcript_service.fetch_metadata(url)
-        update(20, "Checking LM Studio model...", title=metadata["title"])
+        update(20, f"Checking {provider_label} model...", title=metadata["title"])
         model = self.lm_studio.resolve_model(requested_model)
 
         update(35, "Fetching YouTube transcript...")
         transcript = self.transcript_service.fetch(url)
 
-        update(55, "Sending transcript to LM Studio...")
+        update(55, f"Sending transcript to {provider_label}...")
         system_prompt, _ = self.prompt_store.load()
-        completion = self.lm_studio.summarize(transcript["text"], system_prompt, model)
+        completion = self.lm_studio.summarize(transcript["text"], system_prompt, model, progress=progress)
         summary = completion["text"]
 
         if not summary:
-            raise AppError("LM Studio returned an empty summary.", "empty_summary", 500)
+            raise AppError(f"{provider_label} returned an empty summary.", "empty_summary", 500)
 
         update(90, "Saving Markdown history...")
         title = transcript.get("title") or metadata["title"]

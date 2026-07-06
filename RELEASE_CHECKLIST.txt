@@ -1,6 +1,6 @@
 GITHUB RELEASE CHECKLIST
 
-Use this checklist to publish a signed and notarized Mac build.
+Use this checklist to publish the current unsigned Mac test build.
 
 
 1. BUILT ARTIFACT
@@ -11,7 +11,7 @@ Current local artifact:
 
 Current checksum:
 
-   91f7e874de6561c85da93d5ba188533799391ade5054d08c908569c7d0d2d9c4
+   c3d4c8feffbfcb7a26a205d1c84b051b93779c082ff8b73e93d6ce09c43dd15b
 
 
 2. CREATE THE GITHUB RELEASE
@@ -24,15 +24,15 @@ Current checksum:
 3. Click Draft a new release.
 4. Choose tag:
 
-   v1.0.0
+   v1.0.1
 
 5. Release title:
 
-   LOCAL BRAIN, NO CLOUD: WatchLess v1.0.0
+   WatchLess v1.0.1 unsigned test release
 
 6. Paste the contents of:
 
-   GITHUB_RELEASE_NOTES_v1.0.0.txt
+   GITHUB_RELEASE_NOTES_v1.0.1.txt
 
 7. Under "Attach binaries by dropping them here or selecting them", upload:
 
@@ -47,7 +47,7 @@ After publishing, send friends the release page link, not the repository source 
 
 The link will look like:
 
-   https://github.com/peiliangkrausse-oss/WatchLess/releases/tag/v1.0.0
+   https://github.com/peiliangkrausse-oss/WatchLess/releases/tag/v1.0.1
 
 
 4. SHORT MESSAGE TO SEND FRIENDS
@@ -59,6 +59,6 @@ Instructions are in DOWNLOAD_INSTRUCTIONS.txt.
 
 5. IF MACOS BLOCKS THE APP
 
-Do not publish the release yet. A signed and notarized DMG should open normally.
+This is expected for the unsigned test release.
 
-Rebuild with ./publish.sh and confirm the script completed the notarization, stapler validation, and Gatekeeper assessment steps.
+For a public release that opens normally, rebuild with ./publish.sh after Apple Developer signing and notarization values are configured.

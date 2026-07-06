@@ -24,13 +24,14 @@ class PromptStore:
             pass
         return DEFAULT_PROMPT, True
 
-    def save(self, prompt: str) -> str:
+    def save(self, prompt: str, preset_id: str = "") -> str:
         cleaned = (prompt or "").strip()
         if not cleaned:
             raise ValueError("Prompt cannot be empty.")
+        safe_preset_id = _slugify(preset_id) if preset_id else ""
         PROMPT_PRESET_FILE.parent.mkdir(parents=True, exist_ok=True)
         with PROMPT_PRESET_FILE.open("w", encoding="utf-8") as preset_file:
-            json.dump({"prompt": cleaned}, preset_file, ensure_ascii=False, indent=2)
+            json.dump({"prompt": cleaned, "preset_id": safe_preset_id}, preset_file, ensure_ascii=False, indent=2)
         return cleaned
 
     def reset(self) -> str:
@@ -41,6 +42,15 @@ class PromptStore:
         return DEFAULT_PROMPT
 
     def list_presets(self) -> list[dict]:
+        active_prompt, is_builtin_default = self.load()
+        active_prompt = active_prompt.strip()
+        active_preset_id = ""
+        try:
+            with PROMPT_PRESET_FILE.open("r", encoding="utf-8") as preset_file:
+                payload = json.load(preset_file)
+            active_preset_id = _slugify(payload.get("preset_id", "")) if isinstance(payload, dict) else ""
+        except Exception:
+            active_preset_id = ""
         presets = [
             {
                 "id": "built-in-default",
@@ -48,11 +58,14 @@ class PromptStore:
                 "prompt": DEFAULT_PROMPT,
                 "created_at": "",
                 "is_builtin": True,
+                "is_default": False,
             }
         ]
+        matching_custom_default = ""
         try:
             PROMPT_PRESETS_DIR.mkdir(parents=True, exist_ok=True)
         except OSError:
+            presets[0]["is_default"] = DEFAULT_PROMPT.strip() == active_prompt
             return presets
         for path in sorted(PROMPT_PRESETS_DIR.glob("*.json"), key=lambda item: item.stat().st_mtime, reverse=True):
             try:
@@ -66,9 +79,20 @@ class PromptStore:
                         "prompt": prompt,
                         "created_at": payload.get("created_at", ""),
                         "is_builtin": False,
+                        "is_default": False,
                     })
+                    if not matching_custom_default and prompt.strip() == active_prompt:
+                        matching_custom_default = path.stem
             except Exception:
                 continue
+        if active_preset_id and not is_builtin_default and any(preset["id"] == active_preset_id for preset in presets):
+            for preset in presets:
+                preset["is_default"] = preset["id"] == active_preset_id
+        elif matching_custom_default and not is_builtin_default:
+            for preset in presets:
+                preset["is_default"] = preset["id"] == matching_custom_default
+        else:
+            presets[0]["is_default"] = DEFAULT_PROMPT.strip() == active_prompt
         return presets
 
     def save_preset(self, name: str, prompt: str) -> dict:

@@ -29,6 +29,7 @@ class SummaryJob:
     error: str = ""
     error_type: str = ""
     history_id: str = ""
+    language: str = ""
     created_at: str = ""
     updated_at: str = ""
 
@@ -110,6 +111,7 @@ class SummaryJobQueue:
                 completion_tokens=result.get("completion_tokens"),
                 elapsed_seconds=result.get("elapsed_seconds"),
                 history_id=result["history"]["id"],
+                language=result.get("transcript", {}).get("language") or "",
             )
         except AppError as exc:
             self._update(

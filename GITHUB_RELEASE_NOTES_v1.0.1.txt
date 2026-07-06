@@ -1,0 +1,99 @@
+WATCHLESS V1.0.1
+
+Release title:
+
+WatchLess v1.0.1 unsigned test release
+
+
+Short description:
+
+WatchLess is a local Mac app that summarizes YouTube videos with LM Studio. Paste one or more YouTube links, queue summaries, save Markdown history, generate narration, and chat with your local model about the result.
+
+
+Download:
+
+Download this file from the release Assets:
+
+   WatchLess.dmg
+
+Do not download "Source code" unless you are a developer.
+
+
+Artifact details:
+
+File: dist/WatchLess.dmg
+Size: 34 MB
+SHA-256: c3d4c8feffbfcb7a26a205d1c84b051b93779c082ff8b73e93d6ce09c43dd15b
+
+
+Important first launch note:
+
+This is an unsigned test release.
+
+To open it:
+
+1. Move the app to Applications.
+2. Double-click WatchLess.
+3. If macOS blocks the app, Control-click WatchLess and choose Open.
+
+If macOS shows a warning, that is expected for this unsigned release.
+
+
+LM Studio is required:
+
+This app does not include an AI model. It uses LM Studio as the free local AI runtime.
+
+Before summarizing:
+
+1. Install LM Studio from https://lmstudio.ai/.
+2. Download one chat or instruct model.
+3. Load exactly one model.
+4. Start LM Studio's local server on port 1234.
+5. Open this app and click Test Connection.
+
+
+What's included:
+
+- Paste one or more YouTube URLs.
+- Queue multiple summaries.
+- Summarize locally through LM Studio.
+- Save Markdown history on your Mac.
+- Chat with your local model about a summary.
+- Edit and save prompt presets.
+- Generate narration using configured voice options.
+- Attach readable files to chat context.
+- Use a built-in LM Studio setup guide.
+
+
+Known limitations:
+
+- macOS only.
+- Unsigned test release; macOS may warn before opening.
+- Requires LM Studio setup.
+- Windows build is not included.
+- Image upload is not supported yet.
+- Summary speed depends on your Mac and model size.
+
+
+Best model advice:
+
+Start small:
+
+- Gemma 3 4B
+- Qwen 2.5 7B Instruct
+- Llama 3.2 3B Instruct
+
+If your Mac has more memory, try larger models later.
+
+
+Friend test checklist:
+
+Please tell me:
+
+- Did the app open?
+- Did LM Studio connect?
+- Which Mac and model did you use?
+- Did summary generation work?
+- Did narration work if you tried it?
+- Was anything confusing?
+- Can you screenshot any error messages?

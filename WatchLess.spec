@@ -12,6 +12,7 @@ entitlements_file = project_dir / "entitlements.plist"
 datas = [
     (str(package_dir / "templates"), "watchless_app/templates"),
     (str(package_dir / "static"), "watchless_app/static"),
+    (str(package_dir / "local_voice_server.py"), "watchless_app"),
 ]
 
 a = Analysis(
