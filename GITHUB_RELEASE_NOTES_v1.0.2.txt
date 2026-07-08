@@ -1,0 +1,68 @@
+WATCHLESS V1.0.2
+
+Release title:
+
+WatchLess v1.0.2 unsigned test release
+
+
+Short description:
+
+WatchLess is a local Mac app that summarizes YouTube videos with LM Studio. Paste one or more YouTube links, queue summaries, save Markdown history, generate narration, and chat with your local model about the result.
+
+
+What's fixed:
+
+- Fixed the summary reader zoom controls in smaller windows.
+- The `+` and `-` buttons now change the summary text size whether the app is full-screen or not.
+
+
+Download:
+
+Download this file from the release Assets:
+
+   WatchLess.dmg
+
+Do not download "Source code" unless you are a developer.
+
+
+Artifact details:
+
+File: dist/WatchLess.dmg
+Size: 34 MB
+SHA-256: 844c9625008f9930b7b25a37959a35a4ab7bef58b9d12aad1bc92d9ca87b4581
+
+
+Important first launch note:
+
+This is an unsigned test release.
+
+To open it:
+
+1. Move the app to Applications.
+2. Double-click WatchLess.
+3. If macOS blocks the app, Control-click WatchLess and choose Open.
+
+If macOS shows a warning, that is expected for this unsigned release.
+
+
+LM Studio is required:
+
+This app does not include an AI model. It uses LM Studio as the free local AI runtime.
+
+Before summarizing:
+
+1. Install LM Studio from https://lmstudio.ai/.
+2. Download one chat or instruct model.
+3. Load exactly one model.
+4. Start LM Studio's local server on port 1234.
+5. Open this app and click Test Connection.
+
+
+Known limitations:
+
+- macOS only.
+- Unsigned test release; macOS may warn before opening.
+- Requires LM Studio setup.
+- Windows build is not included.
+- Image upload is not supported yet.
+- Summary speed depends on your Mac and model size.

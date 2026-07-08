@@ -11,7 +11,7 @@ Current local artifact:
 
 Current checksum:
 
-   c3d4c8feffbfcb7a26a205d1c84b051b93779c082ff8b73e93d6ce09c43dd15b
+   844c9625008f9930b7b25a37959a35a4ab7bef58b9d12aad1bc92d9ca87b4581
 
 
 2. CREATE THE GITHUB RELEASE
@@ -24,15 +24,15 @@ Current checksum:
 3. Click Draft a new release.
 4. Choose tag:
 
-   v1.0.1
+   v1.0.2
 
 5. Release title:
 
-   WatchLess v1.0.1 unsigned test release
+   WatchLess v1.0.2 unsigned test release
 
 6. Paste the contents of:
 
-   GITHUB_RELEASE_NOTES_v1.0.1.txt
+   GITHUB_RELEASE_NOTES_v1.0.2.txt
 
 7. Under "Attach binaries by dropping them here or selecting them", upload:
 
@@ -47,7 +47,7 @@ After publishing, send friends the release page link, not the repository source 
 
 The link will look like:
 
-   https://github.com/peiliangkrausse-oss/WatchLess/releases/tag/v1.0.1
+   https://github.com/peiliangkrausse-oss/WatchLess/releases/tag/v1.0.2
 
 
 4. SHORT MESSAGE TO SEND FRIENDS

@@ -4,7 +4,7 @@ This file records the app's feature evolution, additions, removals, and current 
 
 ## Current Version
 
-- Version tag: `v1.0.1`
+- Version tag: `v1.0.2`
 - Current main commit: this release commit
 - App type: local macOS desktop app backed by Flask, LM Studio, and a browser-based UI.
 - Primary goal: paste one or more YouTube URLs, summarize them with a locally running LM Studio model, save Markdown history, and chat with the local model about saved summaries.
